@@ -3,7 +3,9 @@
 <h3>Product - Data Binding</h3>
 
 Name: @Product.Name <br/>
-Currently Active: @Product.IsActive 
+Currently Active: @Product.IsActive <br/>
+Price: @Product.Price <br/>
+Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/>
 
 @code {
 
@@ -11,7 +13,8 @@ Currently Active: @Product.IsActive
     {
         Id = 1,
         Name = "Sample Product",
-        IsActive = true
+        IsActive = true,
+        Price = 5m
     };
-
+ 
 }
