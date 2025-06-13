@@ -10,15 +10,21 @@ IsActive: <input type="checkbox" @bind="@Product.IsActive"/> <br/>
 Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/> <br/>
 
 Product Properties:
-<select>
+<select @bind="selectedProperty">
     @foreach (var prop in Product.ProductProperties)
     {
-        <option value="@prop.Key">@prop.Value</option>
+        <option value="@prop.Key">@prop.Key</option>
     }
 </select>
+<br/>
+Selected Property: @selectedProperty
+@if (!string.IsNullOrEmpty(selectedProperty))
+{
+    <p>Selected Value: @Product.ProductProperties.FirstOrDefault(a=>a.Key==selectedProperty).Value</p>
+}
 
 @code {
-
+    private string selectedProperty = "";
     Models.Product Product = new()
     {
         Id = 1,
