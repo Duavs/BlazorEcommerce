@@ -7,7 +7,15 @@ This Product is: @(Product.IsActive?"Active":"InActive") <br/>
 Price: @Product.Price <br/>
 
 IsActive: <input type="checkbox" @bind="@Product.IsActive"/> <br/>
-Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/>
+Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/> <br/>
+
+Product Properties:
+<select>
+    @foreach (var prop in Product.ProductProperties)
+    {
+        <option value="@prop.Key">@prop.Value</option>
+    }
+</select>
 
 @code {
 
@@ -16,7 +24,12 @@ Input Price: <input type="number" @bind="@Product.Price" @bind:event="oninput"/>
         Id = 1,
         Name = "Sample Product",
         IsActive = true,
-        Price = 5m
+        Price = 5m,
+        ProductProperties = new List<Models.Product_Prop>()
+        {
+            new Models.Product_Prop { Id = 1, Key = "Color", Value = "Red" },
+            new Models.Product_Prop { Id = 2, Key = "Size", Value = "25ml" },
+            new Models.Product_Prop { Id = 3, Key = "Flavor", Value = "Vanilla" },
+        }
     };
- 
 }
