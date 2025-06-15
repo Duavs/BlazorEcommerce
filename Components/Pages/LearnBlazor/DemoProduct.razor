@@ -1,6 +1,74 @@
 @page "/learnblazor/demoproduct"
 <h3>DemoProduct</h3>
+<div class="row">
+        @foreach (var product in ProductList)
+        {
+            <div class="col-6 border p-3">
+                <h3>Product - @product.Id</h3>
+                <p>Name - @product.Name</p>
+                <p>
+                    Show Properties: 
+                    <input type="checkbox" @onchange="() => ToggleSelectedProduct(product.Id)" checked="@IsProductSelected(product.Id)" />
+                </p>
+                @if (selectedProductId == product.Id)
+                {
+                    <ul>
+                        @foreach (var prop in product.ProductProperties)
+                        {
+                            <p>@prop.Id: @prop.Key: @prop.Value</p>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+   
+</div>
+
 
 @code {
     
+    int selectedProductId = -1;
+    List<Product> ProductList = new();
+
+    protected override void OnInitialized()
+    {
+        ProductList.Add(new()
+        {
+            Id = 1,
+            Name = "Midnight Blaze",
+            IsActive = false,
+            ProductProperties = new List<Product_Prop>()
+            {
+                new Product_Prop { Id = 1, Key = "Flavor", Value = "Rose"},
+                new Product_Prop { Id = 2, Key = "Size", Value = "20oz"},
+                new Product_Prop { Id = 3, Key = "Color", Value="Purple" }
+            }
+        });
+
+        ProductList.Add(new()
+        {
+            Id = 2,
+            Name = "Blossom Lily",
+            IsActive = true,
+            ProductProperties = new List<Product_Prop>()
+            {
+                new Product_Prop { Id = 1, Key = "Flavor", Value = "Lily" },
+                new Product_Prop { Id = 2, Key = "Size", Value = "18oz" },
+                new Product_Prop {Id = 3,Key = "Color",Value = "White"}
+            }
+        });  
+    }
+
+    void ToggleSelectedProduct(int productId)
+    {
+        if (selectedProductId == productId)
+            selectedProductId = -1;
+        else
+            selectedProductId = productId;
+    }
+
+    bool IsProductSelected(int productId)
+    {
+        return selectedProductId == productId;
+    }
 }
