@@ -10,7 +10,7 @@
                     Show Properties: 
                     <input type="checkbox" @onchange="() => ToggleSelectedProduct(product.Id)" checked="@IsProductSelected(product.Id)" />
                 </p>
-                @if (selectedProductId == product.Id)
+                @if (IsProductSelected(product.Id))
                 {
                     <ul>
                         @foreach (var prop in product.ProductProperties)
@@ -27,7 +27,7 @@
 
 @code {
     
-    int selectedProductId = -1;
+    HashSet<int> selectedProductIds = new();
     List<Product> ProductList = new();
 
     protected override void OnInitialized()
@@ -61,14 +61,13 @@
 
     void ToggleSelectedProduct(int productId)
     {
-        if (selectedProductId == productId)
-            selectedProductId = -1;
+        if (selectedProductIds.Contains(productId))
+            selectedProductIds.Remove(productId);
         else
-            selectedProductId = productId;
+            selectedProductIds.Add(productId);
     }
-
     bool IsProductSelected(int productId)
     {
-        return selectedProductId == productId;
+        return selectedProductIds.Contains(productId);
     }
 }
