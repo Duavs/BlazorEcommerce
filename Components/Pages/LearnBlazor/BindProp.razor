@@ -51,15 +51,16 @@
                 </tr>
             }
             </tbody>
-            <br/>
-            <h3 class="text-primary">Product Summary</h3>
-            <ul>
-                @foreach (var product in ProductList)
-                {
-                    <li>@product.Name - [@product.Price] - @(product.IsActive ? "Active" : "Inactive")</li>
-                }
-                </ul>
         </table>
+        
+        <br/>
+        <h3 class="text-secondary">Product Summary</h3>
+        <ul>
+            @foreach (var prod in ProductList)
+            {
+                <p>@prod.Name - [@prod.Price] is @(prod.IsActive ? "Active" : "Inactive")</p>
+            }
+        </ul>
     </div>
    
 </div>
