@@ -4,30 +4,24 @@
         @foreach (var product in ProductList)
         {
             <div class="col-6 border p-3">
-                <h3>Product - @product.Id</h3>
-                <p>Name - @product.Name</p>
-                <p>
-                    Show Properties: 
-                    <input type="checkbox" @onchange="() => ToggleSelectedProduct(product.Id)" checked="@IsProductSelected(product.Id)" />
-                </p>
-                @if (IsProductSelected(product.Id))
+            <h3>Product - @product.Id</h3>
+            <p>Name - @product.Name</p>
+            Show Properties:
+            <input type="checkbox" @bind="@product.IsActive"/> 
+            @if (product.IsActive)
+            {
+                @foreach (var prop in product.ProductProperties)
                 {
-                    <ul>
-                        @foreach (var prop in product.ProductProperties)
-                        {
-                            <p>@prop.Id: @prop.Key: @prop.Value</p>
-                        }
-                    </ul>
+                    <p>@prop.Id: @prop.Key: @prop.Value</p>
                 }
+            }
             </div>
         }
-   
 </div>
 
 
 @code {
     
-    HashSet<int> selectedProductIds = new();
     List<Product> ProductList = new();
 
     protected override void OnInitialized()
@@ -57,17 +51,5 @@
                 new Product_Prop {Id = 3,Key = "Color",Value = "White"}
             }
         });  
-    }
-
-    void ToggleSelectedProduct(int productId)
-    {
-        if (selectedProductIds.Contains(productId))
-            selectedProductIds.Remove(productId);
-        else
-            selectedProductIds.Add(productId);
-    }
-    bool IsProductSelected(int productId)
-    {
-        return selectedProductIds.Contains(productId);
     }
 }
