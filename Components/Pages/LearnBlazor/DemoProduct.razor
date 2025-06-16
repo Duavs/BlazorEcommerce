@@ -17,7 +17,8 @@
                 }
             }
             <br/>
-            <input type="button" class="btn btn-danger" style="width:100px" value="Delete">
+            <_DeleteButtonComponent>
+            </_DeleteButtonComponent>
         </div>
     }
 </div>
@@ -25,18 +26,28 @@
     <div class="col-12">
         <h3>Counter</h3>
         <p>Count: @Count</p>
-        <input type="button" class="btn btn-primary" value="Increment" @onclick="incrementCount"/>
+        <input type="button" class="btn btn-primary" value="Increment" @onclick="()=>incrementCount(5)"/>
     </div>
 </div>
 
 @code {
 
     public int Count { get; set; } = 0;
-
-    private void incrementCount()
+    private void deleteProduct(int productId)
     {
-        Count++;
+        var productToDelete = ProductList.FirstOrDefault(p => p.Id == productId);
+        if (productToDelete != null)
+        {
+            ProductList.Remove(productToDelete);
+        }
+        
     }
+    
+    private void incrementCount(int incrementValue)
+    {
+        Count += incrementValue;
+    }
+    
     List<Product> ProductList = new();
 
     protected override void OnInitialized()
