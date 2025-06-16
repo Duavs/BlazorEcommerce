@@ -1,9 +1,10 @@
 @page "/learnblazor/demoproduct"
 <h3>DemoProduct</h3>
+<PageTitle>Demo Product</PageTitle>
 <div class="row">
-        @foreach (var product in ProductList)
-        {
-            <div class="col-6 border p-3">
+    @foreach (var product in ProductList)
+    {
+        <div class="col-6 border p-3">
             <h3>Product - @product.Id</h3>
             <p>Name - @product.Name</p>
             Show Properties:
@@ -15,13 +16,27 @@
                     <p>@prop.Id: @prop.Key: @prop.Value</p>
                 }
             }
-            </div>
-        }
+            <br/>
+            <input type="button" class="btn btn-danger" style="width:100px" value="Delete">
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col-12">
+        <h3>Counter</h3>
+        <p>Count: @Count</p>
+        <input type="button" class="btn btn-primary" value="Increment" @onclick="incrementCount"/>
+    </div>
 </div>
 
-
 @code {
-    
+
+    public int Count { get; set; } = 0;
+
+    private void incrementCount()
+    {
+        Count++;
+    }
     List<Product> ProductList = new();
 
     protected override void OnInitialized()
