@@ -1,55 +1,30 @@
 @page "/learnblazor/demoproduct"
 <h3>DemoProduct</h3>
 <PageTitle>Demo Product</PageTitle>
+<p>Favorite Count : @FavoriteCount</p>
 <div class="row">
     @foreach (var product in ProductList)
     {
-        <div class="col-6 border p-3">
-            <h3>Product - @product.Id</h3>
-            <p>Name - @product.Name</p>
-            Show Properties:
-            <input type="checkbox" @bind="@product.IsActive"/> 
-            @if (product.IsActive)
-            {
-                @foreach (var prop in product.ProductProperties)
-                {
-                    <p>@prop.Id: @prop.Key: @prop.Value</p>
-                }
-            }
-            <br/>
-            <_DeleteButtonComponent ProductId="@product.Id" ProductName="@product.Name">
-            </_DeleteButtonComponent>
-        </div>
+        <_IndividualProduct Product="product" OnFavoriteUpdated="FavoriteCountChange">
+        </_IndividualProduct>
     }
-</div>
-<div class="row">
-    <div class="col-12">
-        <h3>Counter</h3>
-        <p>Count: @Count</p>
-        <input type="button" class="btn btn-primary" value="Increment" @onclick="()=>incrementCount(5)"/>
-    </div>
 </div>
 
 @code {
-
-    public int Count { get; set; } = 0;
-    private void deleteProduct(int productId)
-    {
-        var productToDelete = ProductList.FirstOrDefault(p => p.Id == productId);
-        if (productToDelete != null)
-        {
-            ProductList.Remove(productToDelete);
-        }
-        
-    }
     
-    private void incrementCount(int incrementValue)
-    {
-        Count += incrementValue;
-    }
+    // private void deleteProduct(int productId)
+    // {
+    //     var productToDelete = ProductList.FirstOrDefault(p => p.Id == productId);
+    //     if (productToDelete != null)
+    //     {
+    //         ProductList.Remove(productToDelete);
+    //     }
+    //     
+    // }
+    public int Count { get; set; } = 0;
+    public int FavoriteCount { get; set; } = 0;
     
     List<Product> ProductList = new();
-
     protected override void OnInitialized()
     {
         ProductList.Add(new()
@@ -77,5 +52,17 @@
                 new Product_Prop {Id = 3,Key = "Color",Value = "White"}
             }
         });  
+    }
+
+    protected void FavoriteCountChange(bool isSelected)
+    {
+        if (isSelected)
+        {
+            FavoriteCount++;
+        }
+        else
+        {
+            FavoriteCount--;
+        }
     }
 }
