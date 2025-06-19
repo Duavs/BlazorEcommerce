@@ -2,10 +2,13 @@
 <h3>DemoProduct</h3>
 <PageTitle>Demo Product</PageTitle>
 <p>Favorite Count : @FavoriteCount</p>
+<p>Selected Product : @FavoriteProductName</p>
 <div class="row">
     @foreach (var product in ProductList)
     {
-        <_IndividualProduct Product="product" OnFavoriteUpdated="FavoriteCountChange">
+        <_IndividualProduct Product="product" 
+                            OnFavoriteUpdated="FavoriteCountChange" 
+                            OnChosenProductClicked="HandleProductClicked">
         </_IndividualProduct>
     }
 </div>
@@ -23,7 +26,7 @@
     // }
     public int Count { get; set; } = 0;
     public int FavoriteCount { get; set; } = 0;
-    
+    public string FavoriteProductName { get; set; }
     List<Product> ProductList = new();
     protected override void OnInitialized()
     {
@@ -64,5 +67,16 @@
         {
             FavoriteCount--;
         }
+    }
+
+    private void HandleProductClicked(int productId)
+    {
+        var clickedProduct = ProductList.FirstOrDefault(p => p.Id == productId);
+        if (clickedProduct == null)
+        {
+            FavoriteProductName = "No Product Selected";
+            return;
+        }
+        FavoriteProductName = clickedProduct != null ? clickedProduct.Name : "No Product Selected";
     }
 }
