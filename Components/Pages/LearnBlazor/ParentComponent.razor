@@ -1,14 +1,19 @@
 @page "/learnBlazor/ParentComponent"
 <h3>ParentComponent</h3>
 
-<_ChildComponent Title="This is a Child Component in ParentComponent">
+<_ChildComponent OnButtonClick="ChildButton" Title="This is a Child Component in ParentComponent">
     Some text between the tags from parent component.
 </_ChildComponent>
-
+<p>@messasgeText</p>
 
 <_ChildComponent Title="This is a Child Component in ParentComponent">
     test
 </_ChildComponent>
 @code {
+    private string messasgeText = "";
     
+     private void ChildButton()
+     {
+         messasgeText = "This button is from child component clicked from Parent Component";
+     }
 }
