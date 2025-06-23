@@ -1,9 +1,9 @@
 @page "/learnBlazor/ParentComponent"
 <h3>ParentComponent</h3>
 
+<CascadingValue Value="@MessageForGrandChildTemp">
 <_ChildComponent OnButtonClick="ChildButton" 
-                 Title="This is a Child Component in ParentComponent" 
-                 MessageForGrandChild="This is a message from Parent Component to Grand Child Component">
+                 Title="This is a Child Component in ParentComponent">
     <ChildSomeContent>
         This is a custom child content from child component rendered in Parent Component.
     </ChildSomeContent> 
@@ -12,8 +12,10 @@
     </ChildContent>
     
 </_ChildComponent>
+</CascadingValue>
 <p>@messasgeText</p>
 @code {
+    private string MessageForGrandChildTemp = "This is a message from Parent Component to Grand Child Component";
     private string messasgeText = "";
     
      private void ChildButton()
