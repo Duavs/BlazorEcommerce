@@ -1,23 +1,25 @@
 @page "/learnBlazor/ParentComponent"
 <h3>ParentComponent</h3>
 
-<CascadingValue Value="@MessageForGrandChildTemp">
-<_ChildComponent OnButtonClick="ChildButton" 
-                 Title="This is a Child Component in ParentComponent">
-    <ChildSomeContent>
-        This is a custom child content from child component rendered in Parent Component.
-    </ChildSomeContent> 
-    <ChildContent>
-        This is a custom child content from child component rendered in Parent Component.
-    </ChildContent>
-    
-</_ChildComponent>
+<CascadingValue Value="@MessageForGrandChildTemp" Name="Message">
+    <CascadingValue Value="@LuckyNumberForGrandChild" Name="LuckyNumber">
+                <_ChildComponent OnButtonClick="ChildButton"
+                                 Title="This is a Child Component in ParentComponent">
+                    <ChildSomeContent>
+                        This is a custom child content from child component rendered in Parent Component.
+                    </ChildSomeContent>
+                    <ChildContent>
+                        This is a custom child content from child component rendered in Parent Component.
+                    </ChildContent>
+
+                </_ChildComponent>
+        </CascadingValue>
 </CascadingValue>
 <p>@messasgeText</p>
-@code {
+@code {   
     private string MessageForGrandChildTemp = "This is a message from Parent Component to Grand Child Component";
     private string messasgeText = "";
-    
+    private string LuckyNumberForGrandChild = "7";
      private void ChildButton()
      {
          messasgeText = "This button is from child component clicked from Parent Component";
