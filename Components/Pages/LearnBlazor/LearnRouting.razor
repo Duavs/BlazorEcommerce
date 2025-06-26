@@ -1,11 +1,13 @@
 @page "/learnrouting"
-@page "/learnrouting/{Param1}"
+@page "/learnrouting/{Param1}/{Param2}"
 @page "/learnblazor/learnrouting"
 <title>Routing</title>
 <h3>LearnRouting</h3>
 
 <p>Param1 is: @Param1</p>
+<p>Param2 is: @Param2</p>
 
 @code {
     [Parameter] public string Param1 { get; set; } = "";
+    [Parameter] public string Param2 { get; set; } = "";
 }       
