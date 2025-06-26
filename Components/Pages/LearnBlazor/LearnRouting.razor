@@ -1,5 +1,6 @@
 @page "/learnrouting"
-@page "/learnrouting/{Param1}/{Param2}"
+@page "/learnrouting/{Param1:int}/{Param2}"
+@page "/learnrouting/{Param1:int}"
 @page "/learnblazor/learnrouting"
 <title>Routing</title>
 <h3>LearnRouting</h3>
@@ -8,6 +9,6 @@
 <p>Param2 is: @Param2</p>
 
 @code {
-    [Parameter] public string Param1 { get; set; } = "";
+    [Parameter] public int Param1 { get; set; }
     [Parameter] public string Param2 { get; set; } = "";
 }       
