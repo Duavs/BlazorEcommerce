@@ -1,6 +1,6 @@
 @page "/learnrouting"
-@page "/learnrouting/{Param1}/{Param2}"
-@page "/learnrouting/{Param1}"
+@* @page "/learnrouting/{Param1}/{Param2}" *@
+@* @page "/learnrouting/{Param1}" *@
 @page "/learnblazor/learnrouting"
 @page "/learnrouting/learnBlazor"
 @page "/learnrouting/catch-all/{*CatchAllParams}"
@@ -20,8 +20,8 @@
 <div class="bg-info" style="height: 1000px"></div>
 <h2 id="targetElement">Main title</h2>
 @code {
-    [Parameter] public string Param1 { get; set; }
-    [Parameter] public string Param2 { get; set; } = "";
+    [SupplyParameterFromQuery(Name = "Param1")]public string Param1 { get; set; }
+    [SupplyParameterFromQuery] public string Param2 { get; set; } = "";
     [Parameter] public string CatchAllParams { get; set; } = "";
     
     private void LoadParameter()
