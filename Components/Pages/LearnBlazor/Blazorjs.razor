@@ -7,21 +7,37 @@
     <button class="btn btn-primary" @onclick="Confirm">Message confirmation</button>
     
 </div>
+<div class="row">
+    @if (confirmResult)
+    {
+        <p>Confirmation has been made</p>
+    }
+    else
+    {
+        <p>Pending confirmation</p>
+    }
+</div>
 
-@if (confirmResult)
-{
-    <p>Confirmation has been made</p>
-}
-else
-{
-    <p>Pending confirmation</p>
-}
+<div class="row">
+    <button class="btn btn-success" @onclick="ToastrSuccess">Toastr Success</button>
+    <button class="btn btn-danger" @onclick="ToastrError">Toastr Failure</button>
 
+</div>
 @code {
     private string confirmMessage = "Do you wish to proceed?";
     private bool confirmResult = false;
     private async Task Confirm()
     { 
         confirmResult = await _JSRuntime.InvokeAsync<bool>("confirm", confirmMessage);
+    }
+
+    private async Task ToastrSuccess()
+    {
+        await _JSRuntime.InvokeVoidAsync("showToastr", "success", "Success Notification");
+    }
+    
+    private async Task ToastrError()
+    {
+        await _JSRuntime.InvokeVoidAsync("showToastr", "error", "Error Notification");
     }
 }
