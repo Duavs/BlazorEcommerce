@@ -1,3 +1,5 @@
+@inject IJSRuntime _JSRuntime
+
 <div>
     <div class="alert alert-info">
         @Title
@@ -33,4 +35,10 @@
     public EventCallback OnButtonClick { get; set; }
     [Parameter]
     public string MessageForGrandChild { get; set; }
+    
+    public async Task ToastrError()
+    {
+        // await _JSRuntime.InvokeVoidAsync("showToastr", "error", "Error Notification");
+        await _JSRuntime.ToastError("Error Notification");
+    }
 }
