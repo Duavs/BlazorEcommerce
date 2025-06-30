@@ -64,8 +64,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9MZWFybkJsYXpvci9MZWFybkJsYXpvckNvbXBvbmVudHMvX0luZGl2aWR1YWxQcm9kdWN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/john/Projects/BlazorEcommerce/BlazorEcommerce/Components/Pages/LearnBlazor/LearnBlazorComponents/_LifeCycleChildComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9MZWFybkJsYXpvci9MZWFybkJsYXpvckNvbXBvbmVudHMvX0xpZmVDeWNsZUNoaWxkQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/john/Projects/BlazorEcommerce/BlazorEcommerce/Components/Pages/LearnBlazor/LearnRouting.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9MZWFybkJsYXpvci9MZWFyblJvdXRpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/john/Projects/BlazorEcommerce/BlazorEcommerce/Components/Pages/LearnBlazor/LifeCycle.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9MZWFybkJsYXpvci9MaWZlQ3ljbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/john/Projects/BlazorEcommerce/BlazorEcommerce/Components/Pages/LearnBlazor/ParentComponent.razor]
