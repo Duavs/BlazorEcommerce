@@ -6,9 +6,18 @@
 }
 @code {
     List<string> EventType = new List<string>();
+    
+    [Parameter]
+    public int CountValue { get; set; }
+    
     protected override void OnInitialized()
     {
         EventType.Add("OnInitialized is called in _LifeCycleChildComponent");
+    }
+
+    protected override void OnParametersSet()
+    {
+        EventType.Add("OnParametersSet is called in _LifeCycleChildComponent");
     }
 
 }
