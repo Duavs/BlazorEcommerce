@@ -42,22 +42,51 @@
             </button>
             <p class="text-success">@(IsProcessing == true ? "Processing.." : "")</p>
         </EditForm>
+        <EditForm FormName="ProductCreateTemp" Model="ProductTemp" OnValidSubmit="HandleProductCreateTemp">
+        </EditForm>
     </div>
     
+    @if (createdProduct != null)
+    {
+        <div class="mx-2 pt-2 pb-5">
+            <hr/>
+            <h2 class="text-success">Product Created</h2>
+            <div class="px-4">
+                Name: @createdProduct.Name <br/>
+                Price: @createdProduct.Price <br/>
+                Category: @createdProduct.Category <br/>
+                Is available: @(createdProduct.IsActive ? "Available" : "Not Available") <br/>
+                Available After: @createdProduct.AvailableAfter <br/>
+            </div>
+        </div>
+    }
 </div>
 
 @code {
+    [SupplyParameterFromForm(FormName = "ProductCreateTemp")]
+    public Product ProductTemp { get; set; } = new Product(){};
+    [SupplyParameterFromForm(FormName = "ProductCreate")]
+    public Product Product { get; set; } = new Product(){};
 
-    public Product Product { get; set; } = new Product();
+    private Product? createdProduct { get; set; }
 
     private bool IsProcessing { get; set; } = false;
 
     private async Task HandleProductCreate()
     {
         IsProcessing = true;
-
+        createdProduct = null;
         await Task.Delay(3000);
-
+        createdProduct = Product;
+        IsProcessing = false;
+    }
+    
+    private async Task HandleProductCreateTemp()
+    {
+        IsProcessing = true;
+        createdProduct = null;
+        await Task.Delay(3000);
+        createdProduct = ProductTemp;
         IsProcessing = false;
     }
 
