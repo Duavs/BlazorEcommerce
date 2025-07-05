@@ -1,9 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace BlazorEcommerce.Models;
 
 public class Product
 {
+    public Product()
+    {
+        AvailableAfter = DateOnly.FromDateTime(DateTime.Now);
+    }
     public int Id { get; set; }
     [Required] 
     public string Name { get; set; }
@@ -14,7 +19,7 @@ public class Product
     
     public Category Category { get; set; }
     
-    public DateOnly AvailableAfter { get; set; }
+    public DateOnly AvailableAfter { get; set; } 
 }
 
 public enum Category
