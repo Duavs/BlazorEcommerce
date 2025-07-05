@@ -11,14 +11,31 @@
             <DataAnnotationsValidator/>
             @* <ValidationSummary/> *@
             <div class="form-group py-2">
-                Product Name:
+                Product Name
                 <InputText class="form-control" @bind-Value="@Product.Name"/>
                 <ValidationMessage For="@(()=> Product.Name)"/>
             </div>
             <div class="form-group py-2">
-                Price:
+                Price
                 <InputNumber class="form-control" @bind-Value="@Product.Price"/>
                 <ValidationMessage For="(()=> Product.Price)"/>
+            </div>
+            <div class="form-group py-2">
+                Catergory
+                <InputSelect class="form-select" @bind-Value="@Product.Category">
+                    @foreach(var category in Enum.GetValues(typeof(Category)))
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="form-group py-2">
+                Is Available
+                <InputCheckbox @bind-Value="@Product.IsActive"/>
+            </div>
+            <div class="form-group py-2">
+                Available After
+                <InputDate class="form-control" @bind-Value="@Product.AvailableAfter"/>
             </div>
             <button class="btn btn-primary my-3" type="submit" style="width: 200px;">
                 Create Product
